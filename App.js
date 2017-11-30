@@ -64,7 +64,8 @@ export default class App extends React.Component {
     let url = "http://api.themoviedb.org/3/search/movie?query=" + this.state.movieNameInput + "&api_key=8ad43d355fccbef40dc3527123bb25ff&language=en-US&page=1&include_adult=false";
     fetch(url).then(response => response.json()).then(json => {
         this.setState({
-            movie: json.results[0]
+            movie: json.results[0],
+            movieNameInput: ""
           })
     });
   }
@@ -74,6 +75,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <TextInput
             style={styles.movieNameInput}
+            value={this.state.movieNameInput}
             placeholder="Enter a movie name!"
             placeholderTextColor="#aaa"
             onChangeText={(text) => this.movieNameInput(text)}
